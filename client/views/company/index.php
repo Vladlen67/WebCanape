@@ -26,7 +26,7 @@ require_once (ROOT . '/views/layouts/header.php');
                                 <div class="blog-info">
                                     <h4 class="title"><a href="/company/<?php echo $value['id']; ?>"><b><?php echo $value['title']; ?></b></a></h4>
                                     <ul class="post-footer">
-                                        <li><a href="#"><i class="ion-chatbubble"></i><?php echo $value['reviews']; ?></a></li>
+                                        <li><a href="/company/<?php echo $value['id']; ?>"><i class="ion-chatbubble"></i><?php echo $value['reviews']; ?></a></li>
                                     </ul>
                                 </div><!-- blog-info -->
                             </div><!-- single-post -->

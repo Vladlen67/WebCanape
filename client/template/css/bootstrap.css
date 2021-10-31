@@ -6236,6 +6236,8 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   display: inline-flex !important;
 }
 
+
+
 @media (min-width: 576px) {
   .d-sm-none {
     display: none !important;
@@ -9329,4 +9331,5 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     display: none !important;
   }
 }
+
 /*# sourceMappingURL=bootstrap.css.map */

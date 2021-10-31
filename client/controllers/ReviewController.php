@@ -8,9 +8,10 @@ class ReviewController
 
         if ($id) {
             $review = Review::getReview($id);
-
             require_once (ROOT . '/views/review/index.php');
         }
+
         return true;
     }
+
 }

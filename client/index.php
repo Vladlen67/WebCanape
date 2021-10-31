@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 
 //Подключение файлов
 define('ROOT', dirname(__FILE__));
-include_once ROOT . '/components/Autoload.php';
+define('PREROOT', str_replace(basename(__DIR__), '', ROOT));
+include_once PREROOT . 'components/Autoload.php';
 
 $router = new Router();
 $router->run();
