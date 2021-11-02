@@ -4,7 +4,7 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="footer-section">
-                    <a class="logo" href="#"><img src="../template/images/logo.png" alt="Logo Image"></a>
+                    <a class="logo" href="#"><img src="../client/template/images/logo.png" alt="Logo Image"></a>
                     <p class="copyright">Bona @ <?php echo date('Y'); ?>. All rights reserved.</p>
                     <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
                     <ul class="icons">
@@ -22,9 +22,9 @@
     </div><!-- container -->
 </footer>
 <!-- SCIPTS -->
-<script src="../template/js/jquery-3.1.1.min.js"></script>
-<script src="../template/js/tether.min.js"></script>
-<script src="../template/js/bootstrap.js"></script>
-<script src="../template/js/scripts.js"></script>
+<script src="../client/template/js/jquery-3.1.1.min.js"></script>
+<script src="../client/template/js/tether.min.js"></script>
+<script src="../client/template/js/bootstrap.js"></script>
+<script src="../client/template/js/scripts.js"></script>
 </body>
 </html>

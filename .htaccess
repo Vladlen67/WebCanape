@@ -1,0 +1,12 @@
+RewriteEngine On
+
+
+RewriteRule ^admin/(.*) index.php/$1 [L]
+RewriteRule ^(.*)$ client/$1 [L]
+# если это папка или файл, открываем его
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+
+

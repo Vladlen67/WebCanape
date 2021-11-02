@@ -21,12 +21,19 @@ class Router
         }
     }
 
+    /**
+     *
+     */
     public function run()
     {
         $uri = $this->getURI();
-
+        if (!$uri) {
+            $uri = '/';
+        }
+        $last_Iteration = count($this->routes);
+        $i = 0;
         foreach ($this->routes as $uriPattern => $path) {
-
+            $i++ ;
             if (preg_match("~$uriPattern~", $uri)) {
 
                 //Определение параметров пути
@@ -44,7 +51,6 @@ class Router
 
                 //Подключение контролера
                 $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
-
                 if (file_exists($controllerFile)) {
                     include_once ($controllerFile);
                 }
@@ -55,6 +61,10 @@ class Router
                 if ($result != null) {
                     break;
                 }
+            }
+            if ($i >= $last_Iteration) {
+                header('Location: /error');
+                break;
             }
         }
 

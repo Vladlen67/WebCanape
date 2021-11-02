@@ -22,7 +22,7 @@ require_once(ROOT . '/views/layouts/header.php');
                         <h3 class="title"><a href="#"><b><?php echo $company['title'] ?></b></a></h3>
                         <p class="para"><?php echo $company['description']; ?></p>
                     </div><!-- post-top-area -->
-                    <div class="post-image"><img src="../template/images/blog-1-1000x600.jpg" alt="Blog Image"></div>
+                    <div class="post-image"><img src="../client/template/images/blog-1-1000x600.jpg" alt="Blog Image"></div>
                     <div class="post-bottom-area">
                     </div><!-- post-bottom-area -->
                 </div><!-- main-post -->
@@ -43,7 +43,7 @@ require_once(ROOT . '/views/layouts/header.php');
                         <div class="comment">
                             <div class="post-info">
                                 <div class="left-area">
-                                    <img src="/template/uploads/<?php echo $review['img']; ?>" alt="Profile Image">
+                                    <img src="/client/template/uploads/<?php echo $review['img']; ?>" alt="Profile Image">
                                 </div>
                                 <div class="middle-area">
                                     <b><?php echo $review['author']; ?></b>
@@ -97,7 +97,7 @@ require_once(ROOT . '/views/layouts/header.php');
                                     border-radius: 3px;
                                     cursor: pointer;
                                     margin: 0 auto;">
-                                    <span class="input__file-icon-wrapper"><img class="input__file-icon" src="../template/images/add.svg" alt="Your logo" width="25" style="
+                                    <span class="input__file-icon-wrapper"><img class="input__file-icon" src="../client/template/images/add.svg" alt="Your logo" width="25" style="
                                     height: 60px;
                                     width: 60px;
                                     margin-right: 15px;
@@ -118,12 +118,12 @@ require_once(ROOT . '/views/layouts/header.php');
                             </div>
                             <div class="col-sm-12">
                                 <textarea name="form-message" rows="2" class="text-area-message form-control" placeholder="Enter your comment"
-                                    aria-required="true" aria-invalid="false" value="<?php echo $message; ?>"></textarea >
+                                    aria-required="true" aria-invalid="false"><?php echo $message; ?></textarea >
                             </div><!-- col-sm-12 -->
                             <div class="col-sm-12">
                                 <button class="submit-btn" type="submit" name="form-submit"><b>POST COMMENT</b></button>
                             </div><!-- col-sm-12 -->
-                            <?php if ($errors): ?><div style="color: red"><ul>
+                            <?php if (isset($errors) && is_array($errors)): ?><div style="color: red"><ul>
                                 <?php foreach ($errors AS $error): ?>
                                 <li><?php echo $error; ?></li><br>
                                 <?php endforeach; ?></ul></div>

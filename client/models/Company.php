@@ -13,7 +13,10 @@ class Company
                 . 'WHERE id=' . $id . ' '
                 . 'LIMIT 5');
             $company = $company_result->fetch();
+        } else {
+            return false;
         }
+
         return $company;
     }
 
@@ -62,7 +65,7 @@ class Company
         return false;
     }
 
-    public static function post($id, $name, $message, $img = ''): bool
+    public static function post($id, $name, $message, $img = 'person-icon.png'): bool
     {
         $db = Db::connection();
 

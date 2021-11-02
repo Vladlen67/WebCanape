@@ -17,38 +17,40 @@ class CompanyController
         return true;
     }
 
-    public function actionView($id, $list = 1): bool
+    public function actionView($id): bool
     {
         $name = '';
         $message = '';
 
-        $errors = false;
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name = $_POST['form-name'];
-            $message = $_POST['form-message'];
-
-            if (!Company::checkName($name)) {
-                $errors[] = 'Имя должно быть не менее двух символов';
-            }
-            if (!Company::checkMessage($message)) {
-                $errors[] = 'Сообщение дожно быть от пяти символов';
-            }
-
-            if ($errors == false) {
-                $result = Company::post($id, $name, $message);
-            }
-            header('Location: /company/' . $id);
-        }
-
         if ($id) {
-            $company = Company::getCompanyItemById($id);
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $name = $_POST['form-name'];
+                $message = $_POST['form-message'];
+                $errors = false;
+                if (!Company::checkName($name)) {
+                    $errors[] = 'Имя должно быть не менее двух символов';
+                }
+                if (!Company::checkMessage($message)) {
+                    $errors[] = 'Сообщение дожно быть от пяти символов';
+                }
+                if ($errors == false) {
+                    $result = Company::post($id, $name, $message);
+                }
+            }
+            $company = Company::getCompanyItemById($id) ?? false;
+            if (!$company) {
+                header('Location: /error');
+            }
             $reviews = Review::getReviews($id);
-            $limit = 5 * $list;
             $countPage = count($reviews);
             require_once (ROOT . '/views/company/view.php');
         }
+        return true;
+    }
 
+    public function actionError(): bool
+    {
+        require_once (ROOT . '/views/company/error.php');
         return true;
     }
 }
