@@ -3,6 +3,11 @@
 
 class Company
 {
+    /**
+     * @param $id
+     * Получение информации по id компании
+     * @return false|mixed
+     */
     public static function getCompanyItemById($id)
     {
         $db = Db::connection();
@@ -20,6 +25,12 @@ class Company
         return $company;
     }
 
+    /**
+     * @param $offset
+     * @param $limit
+     * Получение списка компаний и пагинация
+     * @return array
+     */
     public static function getCompany($offset, $limit): array
     {
         $db = Db::connection();
@@ -41,6 +52,10 @@ class Company
         return $companies;
     }
 
+    /**
+     * Получение колличества компаний
+     * @return mixed
+     */
     public static function getTotalCompanies()
     {
         $db = Db::connection();
@@ -49,6 +64,11 @@ class Company
         return $result['count'];
     }
 
+    /**
+     * @param $name
+     * Валидация имени
+     * @return bool
+     */
     public static function checkName($name): bool
     {
         if (strlen($name) >= 2) {
@@ -57,6 +77,11 @@ class Company
         return false;
     }
 
+    /**
+     * @param $message
+     * Валидация отзыва
+     * @return bool
+     */
     public static function checkMessage($message): bool
     {
         if (strlen($message) >= 5) {
@@ -65,6 +90,14 @@ class Company
         return false;
     }
 
+    /**
+     * @param $id
+     * @param $name
+     * @param $message
+     * @param string $img
+     * Добавление отзыва, если не будет загружено изображение, запишется ссылка на стандартное
+     * @return bool
+     */
     public static function post($id, $name, $message, $img = 'person-icon.png'): bool
     {
         $db = Db::connection();

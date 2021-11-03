@@ -2,44 +2,63 @@
 
 class AdminController
 {
-    public function actionIndex()
+    /**
+     *
+     * @return bool
+     */
+    public function actionIndex(): bool
     {
+        $admin = Admin::isAuth();
+
         require_once(ROOT . '/views/admin/index.php');
 
-
+        return true;
     }
 
-    public function actionError()
-    {
-        require_once(ROOT . '/views/admin/error.php');
-    }
-
+    /**
+     * Страница аутентификации
+     * @return bool|void
+     */
     public function actionLogin()
     {
-
+        if (!Admin::isGuest()) {
+            header('Location: /admin');
+            exit;
+        }
         $login ='';
         $password = '';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $login = $_SERVER['login'];
-            $password = $_SERVER['password'];
-            $error = false;
+            $login = $_POST['login'];
+            $password = $_POST['password'];
+            $errors = false;
 
             if (!Admin::checkLogin($login)) {
-                $error[] = 'Логин не должен быть короче 4-х символов';
+                $errors[] = 'Логин не должен быть короче 4-х символов';
             }
             if (!Admin::checkPassword($password)) {
-                $error[] = 'Пароль не должен быть короче 6-ти символов';
+                $errors[] = 'Пароль не должен быть короче 6-ти символов';
             }
 
             $adminId = Admin::adminId($login, $password);
             if (!$adminId) {
-                $error[] = 'Неверный логин и пароль';
+                $errors[] = 'Неверный логин и пароль';
             } else {
                 Admin::auth($adminId);
+                header('Location: /admin/index');
+                exit;
             }
-            header('Location: /admin');
         }
         require_once(ROOT . '/views/admin/login.php');
+        return true;
+    }
+
+    /**
+     * Logout
+     */
+    public function actionLogout()
+    {
+        unset($_SESSION['admin']);
+        header('Location: /');
     }
 }

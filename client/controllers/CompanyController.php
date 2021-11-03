@@ -2,7 +2,11 @@
 
 class CompanyController
 {
-
+    /**
+     * @param int $page
+     * Список компаний
+     * @return bool
+     */
     public function actionIndex($page = 1): bool
     {
         $companies = array();
@@ -17,6 +21,11 @@ class CompanyController
         return true;
     }
 
+    /**
+     * @param $id
+     * Детальная страница компании
+     * @return bool
+     */
     public function actionView($id): bool
     {
         $name = '';
@@ -48,7 +57,11 @@ class CompanyController
         return true;
     }
 
-    public function actionError(): bool
+    /**
+     * Страница ошибки
+     * @return bool
+     */
+    public static function actionError(): bool
     {
         require_once (ROOT . '/views/company/error.php');
         return true;

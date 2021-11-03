@@ -36,6 +36,7 @@
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="/"><i class="fa fa-sign-out"></i>На сайт</a></li>
+                                <?php if (!Admin::isGuest()): ?><li><a href="/admin/logout"><i class="fa fa-unlock"></i>Logout</a></li><?php endif; ?>
                             </ul>
                         </div>
                     </div>

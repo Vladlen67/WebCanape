@@ -21,9 +21,9 @@ include ROOT . '/views/layouts/header.php';
                     <div class="signup-form"><!--sign up form-->
                         <h2>Вход на сайт</h2>
                         <form action="#" method="post">
-                            <input type="email" name="email" placeholder="E-mail" value="<?php echo $login; ?>"/>
-                            <input type="password" name="password" placeholder="Пароль" value="<?php echo $password; ?>"/>
-                            <input type="submit" name="submit" class="btn btn-default" value="Вход" />
+                            <input type="text" name="login" placeholder="Login" value="<?php echo $login; ?>"/>
+                            <input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>"/>
+                            <input type="submit" name="submit" class="btn btn-default" value="Login" />
                         </form>
                     </div><!--/sign up form-->
                     <br/>

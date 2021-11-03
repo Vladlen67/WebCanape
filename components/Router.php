@@ -62,10 +62,6 @@ class Router
                     break;
                 }
             }
-            if ($i >= $last_Iteration) {
-                header('Location: /error');
-                break;
-            }
         }
 
 
