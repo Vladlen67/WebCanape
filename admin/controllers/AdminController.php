@@ -3,20 +3,18 @@
 class AdminController
 {
     /**
-     *
+     * Приветственная страница admin/index.php
      * @return bool
      */
     public function actionIndex(): bool
     {
         $admin = Admin::isAuth();
-
         require_once(ROOT . '/views/admin/index.php');
-
         return true;
     }
 
     /**
-     * Страница аутентификации
+     * Страница аутентификации admin/login.php
      * @return bool|void
      */
     public function actionLogin()
@@ -45,7 +43,7 @@ class AdminController
                 $errors[] = 'Неверный логин и пароль';
             } else {
                 Admin::auth($adminId);
-                header('Location: /admin/index');
+                header('Location: /admin');
                 exit;
             }
         }

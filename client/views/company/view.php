@@ -5,6 +5,7 @@
 /* @var $errors CompanyController */
 /* @var $message CompanyController */
 /* @var $reviews ReviewController*/
+/* @var $id ReviewController*/
 
 require_once(ROOT . '/views/layouts/header.php');
 ?>
@@ -22,7 +23,7 @@ require_once(ROOT . '/views/layouts/header.php');
                         <h3 class="title"><a href="#"><b><?php echo $company['title'] ?></b></a></h3>
                         <p class="para"><?php echo $company['description']; ?></p>
                     </div><!-- post-top-area -->
-                    <div class="post-image"><img src="../client/template/images/blog-1-1000x600.jpg" alt="Blog Image"></div>
+                    <div class="post-image"><img src="<?php echo Company::getImageCompany($id); ?>" alt="Blog Image"></div>
                     <div class="post-bottom-area">
                     </div><!-- post-bottom-area -->
                 </div><!-- main-post -->
@@ -43,7 +44,7 @@ require_once(ROOT . '/views/layouts/header.php');
                         <div class="comment">
                             <div class="post-info">
                                 <div class="left-area">
-                                    <img src="/client/template/uploads/<?php echo $review['img']; ?>" alt="Profile Image">
+                                    <img src="<?php echo Review::getImageReview($review['id']); ?>" alt="Profile Image">
                                 </div>
                                 <div class="middle-area">
                                     <b><?php echo $review['author']; ?></b>
@@ -65,7 +66,7 @@ require_once(ROOT . '/views/layouts/header.php');
                     <form method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6">
-                                <input type="text" aria-required="true" name="form-name" class="form-control"
+                                <input type="text" aria-required="true" name="name" class="form-control"
                                        placeholder="Enter your name" aria-invalid="true" required value="<?php echo $name; ?>" >
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6 input__wrapper" style="
@@ -73,7 +74,7 @@ require_once(ROOT . '/views/layouts/header.php');
                                 position: relative;
                                 margin: 15px 0;
                                 text-align: center;">
-                                <input  type="file" name="form-img" id="input__file" class="input input__file" accept="image/png,image/jpeg" style="
+                                <input  type="file" name="img" id="input__file" class="input input__file" accept="image/png,image/jpeg" style="
                                     opacity: 0;
                                     visibility: hidden;
                                     position: absolute;">
@@ -117,7 +118,7 @@ require_once(ROOT . '/views/layouts/header.php');
                                 </label>
                             </div>
                             <div class="col-sm-12">
-                                <textarea name="form-message" rows="2" class="text-area-message form-control" placeholder="Enter your comment"
+                                <textarea name="message" rows="2" class="text-area-message form-control" placeholder="Enter your comment"
                                     aria-required="true" aria-invalid="false"><?php echo $message; ?></textarea >
                             </div><!-- col-sm-12 -->
                             <div class="col-sm-12">

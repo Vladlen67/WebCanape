@@ -64,7 +64,7 @@ class Admin
     }
 
     /**
-     * Проверка идентифткатора пользователя
+     * Проверка идентификатора пользователя
      * @return mixed|void
      */
     public static function isAuth()

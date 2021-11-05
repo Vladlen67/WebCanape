@@ -9,9 +9,8 @@
             <p>Вам доступны такие возможности:</p>
             <br/>
             <ul>
-                <li><a href="/admin/login">Управление компаниями</a></li>
-                <li><a href="/admin/category">Управление отзывами</a></li>
-                <li><a href="/admin/order">Управление заказами</a></li>
+                <li><a href="/admin/company">Управление компаниями</a></li>
+                <li><a href="/admin/review">Управление отзывами</a></li>
             </ul>
         </div>
     </div>

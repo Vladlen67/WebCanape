@@ -6,18 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Админпанель</title>
-    <link href="../admin/template/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../admin/template/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../admin/template/css/prettyPhoto.css" rel="stylesheet">
-    <link href="../admin/template/css/price-range.css" rel="stylesheet">
-    <link href="../admin/template/css/animate.css" rel="stylesheet">
-    <link href="../admin/template/css/main.css" rel="stylesheet">
-    <link href="../admin/template/css/responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../admin/template/images/basic_gear.svg">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/template/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/template/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/template/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/template/images/ico/apple-touch-icon-57-precomposed.png">
+    <link href="<?php echo PATH; ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/prettyPhoto.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/price-range.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/animate.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/main.css" rel="stylesheet">
+    <link href="<?php echo PATH; ?>css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo PATH; ?>images/basic_gear.svg">
 </head><!--/head-->
 <body>
 <div class="page-wrapper">

@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Класс для работы с компаниями
+ */
 class Company
 {
     /**
@@ -11,13 +13,11 @@ class Company
     public static function getCompanyItemById($id)
     {
         $db = Db::connection();
-
         if ($id) {
-            $company_result = $db->query('SELECT * '
+            $result = $db->query('SELECT * '
                 . 'FROM companies '
-                . 'WHERE id=' . $id . ' '
-                . 'LIMIT 5');
-            $company = $company_result->fetch();
+                . 'WHERE id=' . $id);
+            $company = $result->fetch();
         } else {
             return false;
         }
@@ -91,39 +91,43 @@ class Company
     }
 
     /**
+     * Перемещение загруженного изображения, false  в случае неудачи
+     * @return false|string
+     */
+    public static function loadImage()
+    {
+        $file = $_FILES['img']['tmp_name'];
+        $type = ['image/jpg', 'image/jpeg', 'image/png'];
+        $file_type = mime_content_type($file);
+        if (!in_array($file_type, $type)) {
+            return false;
+        } else {
+            switch ($file_type) {
+                case $type[0]:
+                    $img = uniqid() . '.jpg';
+                    break;
+                case $type[1]:
+                    $img = uniqid() . '.jpeg';
+                    break;
+                case $type[2]:
+                    $img = uniqid() . '.png';
+                    break;
+            }
+            return move_uploaded_file($file, ROOT . '/template/uploads/' . $img) ? $img : false ;
+        }
+
+    }
+
+    /**
      * @param $id
      * @param $name
      * @param $message
-     * @param string $img
-     * Добавление отзыва, если не будет загружено изображение, запишется ссылка на стандартное
+     * Добавление отзыва
      * @return bool
      */
-    public static function post($id, $name, $message, $img = 'person-icon.png'): bool
+    public static function postReview($id, $name, $message, $img = ''): bool
     {
         $db = Db::connection();
-
-        if (is_uploaded_file($_FILES['form-img']['tmp_name'])) {
-            $file = $_FILES['form-img']['tmp_name'];
-            $type = ['image/jpg', 'image/jpeg', 'image/png'];
-            $file_type = mime_content_type($file);
-            if (!in_array($file_type, $type)) {
-                $errors['file'] = 'Загрузите файл с изображением в формате .jpeg или .png';
-                } else {
-                    switch ($file_type) {
-                        case $type[0]:
-                            $img = uniqid() . '.jpg';
-                            break;
-                        case $type[1]:
-                            $img = uniqid() . '.jpeg';
-                            break;
-                        case $type[2]:
-                            $img = uniqid() . '.png';
-                            break;
-                        }
-                    move_uploaded_file($file, ROOT . '/template/uploads/' . $img);
-                    }
-            }
-
         $sql = 'INSERT INTO reviews (author, review, company_id, img) '
             . 'VALUES (:author, :review, :company_id, :img)';
 
@@ -133,5 +137,21 @@ class Company
         $result->bindParam(':company_id', $id, PDO::PARAM_STR);
         $result->bindParam(':img', $img, PDO::PARAM_STR);
         return $result->execute();
+    }
+
+    /**
+     * @param $id
+     * Выдает ссылку на загруженное изображение компании, либо на заглушку, при его отсутствии
+     * @return string
+     */
+    public static function getImageCompany($id): string
+    {
+        $db = Db::connection();
+        $result = $db->query('SELECT logo FROM companies WHERE id = '. $id);
+        $result = $result->fetch();
+        if ($result['logo']) {
+            return '//Webcanape/template/uploads/' . $result['logo'];
+        }
+        return '//Webcanape/template/images/no-image.png';
     }
 }

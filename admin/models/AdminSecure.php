@@ -14,5 +14,6 @@ abstract class AdminSecure
         if (Admin::isAuth()) {
             return true;
         }
+        die('Access denied');
     }
 }

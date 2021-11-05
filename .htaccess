@@ -1,10 +1,11 @@
 RewriteEngine On
-
+Options +FollowSymLinks
 # если это папка или файл, открываем его
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteCond %{REQUEST_URI} ^/(admin)
-RewriteRule ^admin(/.*)?$ admin/$1 [L]
+RewriteRule ^admin/(.*)?$ admin/$1 [L]
+#RewriteRule ^admin(/.*)?$ admin/$1 [L]
 RewriteCond %{REQUEST_URI} ^/
 RewriteRule ^(.*)$ client/$1 [L]

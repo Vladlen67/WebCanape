@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Класс реализующий роутинг
+ */
 class Router
 {
     private $routes;
@@ -22,7 +25,7 @@ class Router
     }
 
     /**
-     *
+     * Подключение контроллера и экшена из конфигураций путей
      */
     public function run()
     {
@@ -30,14 +33,11 @@ class Router
         if (!$uri) {
             $uri = '/';
         }
-        $last_Iteration = count($this->routes);
-        $i = 0;
         foreach ($this->routes as $uriPattern => $path) {
-            $i++ ;
             if (preg_match("~$uriPattern~", $uri)) {
 
                 //Определение параметров пути
-                $internalRoute = preg_replace("~$uriPattern~",$path , $uri);
+                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
                 //Определение контроллера и экшена
                 $segments = explode('/', $internalRoute);

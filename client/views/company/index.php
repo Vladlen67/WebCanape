@@ -18,15 +18,15 @@ require_once (ROOT . '/views/layouts/header.php');
 		<div class="container">
 
 			<div class="row">
-                <?php foreach ($companies as $value): ?>
+                <?php foreach ($companies as $company): ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="card h-100">
                             <div class="single-post post-style-1">
-                                <div class="blog-image"><img src="../client/template/images/alex-lambley-205711.jpg" alt="Company Image"></div>
+                                <div class="blog-image"><img src="<?php echo Company::getImageCompany($company['id']) ; ?>" alt="Company Image"></div>
                                 <div class="blog-info">
-                                    <h4 class="title"><a href="/<?php echo $value['id']; ?>"><b><?php echo $value['title']; ?></b></a></h4>
+                                    <h4 class="title"><a href="/<?php echo $company['id']; ?>"><b><?php echo $company['title']; ?></b></a></h4>
                                     <ul class="post-footer">
-                                        <li><a href="/<?php echo $value['id']; ?>"><i class="ion-chatbubble"></i><?php echo $value['reviews']; ?></a></li>
+                                        <li><a href="/<?php echo $company['id']; ?>"><i class="ion-chatbubble"></i><?php echo $company['reviews']; ?></a></li>
                                     </ul>
                                 </div><!-- blog-info -->
                             </div><!-- single-post -->

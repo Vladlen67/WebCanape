@@ -4,7 +4,7 @@ class CompanyController
 {
     /**
      * @param int $page
-     * Список компаний
+     * Список компаний передается в company/index.php с пагинацией
      * @return bool
      */
     public function actionIndex($page = 1): bool
@@ -23,7 +23,7 @@ class CompanyController
 
     /**
      * @param $id
-     * Детальная страница компании
+     * Детальная страница компании company/view.php
      * @return bool
      */
     public function actionView($id): bool
@@ -33,8 +33,8 @@ class CompanyController
 
         if ($id) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $name = $_POST['form-name'];
-                $message = $_POST['form-message'];
+                $name = $_POST['name'];
+                $message = $_POST['message'];
                 $errors = false;
                 if (!Company::checkName($name)) {
                     $errors[] = 'Имя должно быть не менее двух символов';
@@ -42,8 +42,15 @@ class CompanyController
                 if (!Company::checkMessage($message)) {
                     $errors[] = 'Сообщение дожно быть от пяти символов';
                 }
+                if (is_uploaded_file($_FILES['img']['tmp_name'])) {
+                    $img = Company::loadImage();
+                    if (!$img) {
+                        $errors[] = 'Загрузите файл с изображением в формате .jpeg или .png';
+                    }
+                }
                 if ($errors == false) {
-                    $result = Company::post($id, $name, $message);
+                    $result = Company::postReview($id, $name, $message, $img);
+                    header('Location: /' . $id);
                 }
             }
             $company = Company::getCompanyItemById($id) ?? false;
@@ -51,14 +58,13 @@ class CompanyController
                 header('Location: /error');
             }
             $reviews = Review::getReviews($id);
-            $countPage = count($reviews);
             require_once (ROOT . '/views/company/view.php');
         }
         return true;
     }
 
     /**
-     * Страница ошибки
+     * Страница ошибки company/error.php
      * @return bool
      */
     public static function actionError(): bool
